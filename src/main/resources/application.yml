@@ -30,7 +30,7 @@ spring:
 
 
   jwt:
-    secret: ZGF5b25lLXNwcmluZy1ib290LWRpdmlkZW5kLXByb2plY3QtdHV0b3JpYWwtand0LXNlY3JldC1rZXkKk
+    secret: c3ByaW5nLWJvb3QtZGl2aWRlbmQtcHJvamVjdC10dXRvcmlhbC1qd3Qtc2VjcmV0LWtleQ0K
 
 
 

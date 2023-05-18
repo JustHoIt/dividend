@@ -1,6 +1,7 @@
 package com.example.dividend.web;
 
 import com.example.dividend.service.FinanceService;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,8 @@ public class FinanceController {
 
     private final FinanceService financeService;
 
+
+    @ApiOperation(value = "배당금 검색")
     @GetMapping("/finance/dividend/{companyName}")
     public ResponseEntity<?> searchFinance(@PathVariable String companyName) {
         var result = this.financeService.getDividendByCompanyName(companyName);

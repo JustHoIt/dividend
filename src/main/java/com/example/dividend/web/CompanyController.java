@@ -4,6 +4,7 @@ import com.example.dividend.model.Company;
 import com.example.dividend.model.constants.CacheKey;
 import com.example.dividend.persist.entity.CompanyEntity;
 import com.example.dividend.service.CompanyService;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,7 @@ public class CompanyController {
 
     private final CacheManager redisCacheManager;
 
+    @ApiOperation(value = "자동완성")
     @GetMapping("/autocomplete")
     public ResponseEntity<?> autocomplete(@RequestParam String keyword) {
 //        var result = this.companyService.autocomplete(keyword);
@@ -31,6 +33,7 @@ public class CompanyController {
     }
 
     @GetMapping
+    @ApiOperation(value = "회사검색")
     @PreAuthorize("hasRole('READ')")
     public ResponseEntity<?> searchCompany(final Pageable pageable) {
         Page<CompanyEntity> companies = this.companyService.getAllCompany(pageable);
@@ -38,6 +41,7 @@ public class CompanyController {
     }
 
     @PostMapping
+    @ApiOperation(value = "회사추가")
     @PreAuthorize("hasRole('WRITE')")
     public ResponseEntity<?> addCompany(@RequestBody Company request) {
         String ticker = request.getTicker().trim();
@@ -50,6 +54,8 @@ public class CompanyController {
         return ResponseEntity.ok(company);
     }
 
+
+    @ApiOperation(value = "회사 삭제")
     @DeleteMapping("/{ticker}")
     @PreAuthorize("hasRole('WRITE')")
     public ResponseEntity<?> deleteCompany(@PathVariable String ticker) {

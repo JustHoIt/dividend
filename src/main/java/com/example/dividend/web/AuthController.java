@@ -4,6 +4,7 @@ package com.example.dividend.web;
 import com.example.dividend.model.Auth;
 import com.example.dividend.security.TokenProvider;
 import com.example.dividend.service.MemberService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ public class AuthController {
     private final TokenProvider tokenProvider;
 
 
+    @ApiOperation(value = "회원가입(아이디, 비밀번호)")
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody Auth.SignUp request) {
         //회원가입을 위한 API
@@ -29,6 +31,7 @@ public class AuthController {
     }
 
 
+    @ApiOperation(value = "로그인(아이디, 비밀번호")
     @PostMapping("/signin")
     public ResponseEntity<?> signin(@RequestBody Auth.SingIn request) {
         //로그인을 위한 API

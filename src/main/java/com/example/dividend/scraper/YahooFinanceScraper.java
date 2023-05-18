@@ -30,6 +30,7 @@ public class YahooFinanceScraper implements Scraper {
         try {
             long now = System.currentTimeMillis() / 1000;
             String url = String.format(STATISTICS_URL, company.getTicker(), START_TIME, now);
+            System.out.println(url);
             Connection connection = Jsoup.connect(url);
             Document document = connection.get();
 
@@ -48,8 +49,8 @@ public class YahooFinanceScraper implements Scraper {
                 }
                 String[] splits = txt.split(" ");
                 int month = Month.strToNumber(splits[0]);
-                int day = Integer.valueOf(splits[1].replace(",", ""));
-                int year = Integer.valueOf(splits[2]);
+                int day = Integer.parseInt(splits[1].replace(",", ""));
+                int year = Integer.parseInt(splits[2]);
                 String dividend = splits[3];
 
 

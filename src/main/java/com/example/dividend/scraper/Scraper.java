@@ -5,5 +5,6 @@ import com.example.dividend.model.ScrapResult;
 
 public interface Scraper {
     Company scrapCompanyByTicker(String ticker);
+
     ScrapResult scrap(Company company);
 }

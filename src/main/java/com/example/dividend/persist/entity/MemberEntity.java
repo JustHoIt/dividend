@@ -1,4 +1,4 @@
-package com.example.dividend.model;
+package com.example.dividend.persist.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

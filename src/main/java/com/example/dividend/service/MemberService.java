@@ -3,8 +3,8 @@ package com.example.dividend.service;
 
 import com.example.dividend.exception.impl.AlreadyExistUserException;
 import com.example.dividend.model.Auth;
-import com.example.dividend.model.MemberEntity;
-import com.example.dividend.persist.entity.MemberRepository;
+import com.example.dividend.persist.MemberRepository;
+import com.example.dividend.persist.entity.MemberEntity;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.lang.reflect.Member;
 
 @Slf4j
 @Service
@@ -27,13 +25,13 @@ public class MemberService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.memberRepository.findByUsername(username)
-                .orElseThrow(()-> new UsernameNotFoundException("couldn't find user -> " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("couldn't find user -> " + username));
     }
 
 
     public MemberEntity register(Auth.SignUp member) {
         boolean exists = this.memberRepository.existsByUsername(member.getUsername());
-        if(exists) {
+        if (exists) {
             throw new AlreadyExistUserException();
         }
 
@@ -48,7 +46,7 @@ public class MemberService implements UserDetailsService {
         var user = this.memberRepository.findByUsername(member.getUsername())
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 ID 입니다"));
 
-        if(!this.passwordEncoder.matches(member.getPassword(), user.getPassword())) {
+        if (!this.passwordEncoder.matches(member.getPassword(), user.getPassword())) {
             throw new RuntimeException("비밀번호가 일치하지 않습니다");
         }
 

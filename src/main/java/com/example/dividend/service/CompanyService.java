@@ -64,7 +64,7 @@ public class CompanyService {
     }
 
     public List<String> getCompantNamesByKeyword(String keyword) {
-        Pageable limit = PageRequest.of(0,10);
+        Pageable limit = PageRequest.of(0, 10);
         Page<CompanyEntity> companyEntities = this.companyRepository.findByNameStartingWithIgnoreCase(keyword, limit);
         return companyEntities.stream()
                 .map(e -> e.getName())
@@ -83,7 +83,7 @@ public class CompanyService {
                 .collect(Collectors.toList());
     }
 
-    public void deleteAutocompleteKeyword(String keyword) {
+    private void deleteAutocompleteKeyword(String keyword) {
         this.trie.remove(keyword);
     }
 

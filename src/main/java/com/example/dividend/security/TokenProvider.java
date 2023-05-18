@@ -7,7 +7,6 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -32,6 +31,7 @@ public class TokenProvider {
 
     /**
      * 토큰 생성(발급)
+     *
      * @param username
      * @param roles
      * @return
@@ -66,7 +66,7 @@ public class TokenProvider {
     }
 
     public boolean validateToken(String token) {
-        if(!StringUtils.hasText(token)) return false;
+        if (!StringUtils.hasText(token)) return false;
 
         var claims = this.parseClaims(token);
         return !claims.getExpiration().before(new Date());

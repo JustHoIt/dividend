@@ -1,9 +1,8 @@
 package com.example.dividend.model;
 
+import com.example.dividend.persist.entity.MemberEntity;
 import lombok.Data;
-import org.apache.catalina.LifecycleState;
 
-import java.lang.reflect.Member;
 import java.util.List;
 
 public class Auth {

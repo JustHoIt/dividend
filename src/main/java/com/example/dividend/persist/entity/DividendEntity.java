@@ -31,12 +31,11 @@ public class DividendEntity {
 
     private String dividend;
 
-    public DividendEntity (Long companyId, Dividend dividend){
+    public DividendEntity(Long companyId, Dividend dividend) {
         this.companyId = companyId;
         this.date = dividend.getDate();
         this.dividend = dividend.getDividend();
     }
-
 
 
 }

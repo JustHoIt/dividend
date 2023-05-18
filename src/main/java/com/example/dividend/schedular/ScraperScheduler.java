@@ -14,7 +14,6 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -64,9 +63,9 @@ public class ScraperScheduler {
                     // dividend 모델을 dividend Entity로 매핑
                     .map(e -> new DividendEntity(company.getId(), e))
                     // 엘리먼트를 하나씩 디비든 레파지토리에 삽입.
-                    .forEach(e ->{
+                    .forEach(e -> {
                         boolean exists = this.dividendRepository.existsByCompanyIdAndDate(e.getCompanyId(), e.getDate());
-                        if(!exists){
+                        if (!exists) {
                             this.dividendRepository.save(e);
                             log.info("insert new dividend ->" + e.toString());
                         }
